@@ -15,10 +15,15 @@ public class Main extends JavaPlugin {
 
     public void onEnable() {
         pl = this;
-        Config.reloadConfig();
+        Config.loadConfig();
         CommandManager.register(new WhitelistCommand());
         getServer().getPluginManager().registerEvents(new JoinEvent(), this);
 
+    }
+
+    @Override
+    public void onDisable() {
+        Config.saveConfig();
     }
 
 }
